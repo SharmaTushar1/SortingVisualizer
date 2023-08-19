@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className='bg-gray-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100'>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-          <div className='px-12 lg:px-40'>
+          <div className='px-4 sm:px-12 lg:px-40'>
             <Navbar />
             <div className='mt-16 h-full'>
               {children}
