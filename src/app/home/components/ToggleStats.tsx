@@ -27,7 +27,7 @@ export default function ToggleStats() {
 export function Stats() {
   return (
     <div className='dark:bg-zinc-700 bg-zinc-300'>
-      Penis
+      Stats
     </div>
   );
 }
