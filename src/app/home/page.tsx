@@ -1,10 +1,11 @@
+import Bars from "./components/Bars";
 import ToggleStats from "./components/ToggleStats";
 
 export default function Home() {
   return (
-    <div>
+    <div className="mb-12">
       <ToggleStats />
-      Home
+      <Bars />
     </div>
   )
 }

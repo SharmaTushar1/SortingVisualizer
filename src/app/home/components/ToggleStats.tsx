@@ -39,7 +39,7 @@ export function Stats({...props}: stats) {
   }
 
   return (
-    <div className='dark:bg-zinc-700 bg-zinc-300 p-4'>
+    <div className='dark:bg-zinc-700 bg-zinc-300 p-4 border border-black dark:border-white'>
       <div>
         {/* Sorting... or Shuffling...  */}
         Status: {"Status"}
@@ -66,7 +66,7 @@ export function Stats({...props}: stats) {
       <div>
         {/* Array Size */}
         Array Size:
-        <input type="range" min="1" max="100" value={props.arraySize} onChange={handleChangeSlider}/>
+        <input type="range" min="10" max="200" value={props.arraySize} onChange={handleChangeSlider}/>
       </div>
     </div>
   );
