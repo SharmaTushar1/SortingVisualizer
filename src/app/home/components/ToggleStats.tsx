@@ -1,56 +1,17 @@
 'use client';
 
 import { useStore } from '@/app/store';
-import {useState, ChangeEvent, Dispatch, SetStateAction} from 'react';
-
-type stats = {
-  algorithm: string,
-  setAlgorithm: Dispatch<SetStateAction<string>>,
-  timeTaken: string,
-  setTimeTaken: Dispatch<SetStateAction<string>>,
-  comparisonsMade: string,
-  setComparisonsMade: Dispatch<SetStateAction<string>>,
-  isStable: boolean,
-  setIsStable: Dispatch<SetStateAction<boolean>>,
-  memoryUsage: string,
-  setMemoryUsage: Dispatch<SetStateAction<string>>,
-  arraySize: number,
-  setArraySize: (newArraySize: number) => any,
-}
+import {useState, ChangeEvent} from 'react';
 
 export default function ToggleStats() {
 
   const [visible, setVisible] = useState(false);
 
-  const [algorithm, setAlgorithm] = useState("");
+  const propsData = useStore((state) => state);
 
-  const [timeTaken, setTimeTaken] = useState("");
-
-  const [comparisonsMade, setComparisonsMade] = useState("");
-
-  const [isStable, setIsStable] = useState(false);
-
-  const [memoryUsage, setMemoryUsage] = useState("");
-
-  const [arraySize, setArraySize] = [useStore(state => state.arraySize), useStore(state => state.setArraySize)];
-
-  const props:stats = {
-    algorithm,
-    setAlgorithm,
-    timeTaken,
-    setTimeTaken,
-    comparisonsMade,
-    setComparisonsMade,
-    isStable,
-    setIsStable,
-    memoryUsage,
-    setMemoryUsage,
-    arraySize,
-    setArraySize,
-  }
+  const props:stats = {...propsData};
 
   const toggleStats = () => {
-    console.log(visible);
     setVisible((prev) => !prev);
 
   }
@@ -74,7 +35,7 @@ export default function ToggleStats() {
 export function Stats({...props}: stats) {
 
   const handleChangeSlider = (event: ChangeEvent<HTMLInputElement>) => {
-    props.setArraySize(event.target.value as unknown as number);
+    props.setArraySize(event.target.valueAsNumber);
   }
 
   return (
