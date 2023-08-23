@@ -1,14 +1,21 @@
 'use client';
 
-import {useState} from 'react';
+import { useStore } from '@/app/store';
+import {useState, ChangeEvent, Dispatch, SetStateAction} from 'react';
 
 type stats = {
   algorithm: string,
+  setAlgorithm: Dispatch<SetStateAction<string>>,
   timeTaken: string,
+  setTimeTaken: Dispatch<SetStateAction<string>>,
   comparisonsMade: string,
+  setComparisonsMade: Dispatch<SetStateAction<string>>,
   isStable: boolean,
+  setIsStable: Dispatch<SetStateAction<boolean>>,
   memoryUsage: string,
+  setMemoryUsage: Dispatch<SetStateAction<string>>,
   arraySize: number,
+  setArraySize: (newArraySize: number) => any,
 }
 
 export default function ToggleStats() {
@@ -25,15 +32,21 @@ export default function ToggleStats() {
 
   const [memoryUsage, setMemoryUsage] = useState("");
 
-  const [arraySize, setArraySize] = useState(0);
+  const [arraySize, setArraySize] = [useStore(state => state.arraySize), useStore(state => state.setArraySize)];
 
   const props:stats = {
     algorithm,
+    setAlgorithm,
     timeTaken,
+    setTimeTaken,
     comparisonsMade,
+    setComparisonsMade,
     isStable,
+    setIsStable,
     memoryUsage,
+    setMemoryUsage,
     arraySize,
+    setArraySize,
   }
 
   const toggleStats = () => {
@@ -59,11 +72,16 @@ export default function ToggleStats() {
 }
 
 export function Stats({...props}: stats) {
+
+  const handleChangeSlider = (event: ChangeEvent<HTMLInputElement>) => {
+    props.setArraySize(event.target.value as unknown as number);
+  }
+
   return (
     <div className='dark:bg-zinc-700 bg-zinc-300 p-4'>
       <div>
         {/* Sorting... or Shuffling...  */}
-        Status: {"Status"} 
+        Status: {"Status"}
       </div>
       <div>
         Algorithm: {props.algorithm}
@@ -87,7 +105,7 @@ export function Stats({...props}: stats) {
       <div>
         {/* Array Size */}
         Array Size:
-        <input type="range" min="1" max="100" value={props.arraySize}/>
+        <input type="range" min="1" max="100" value={props.arraySize} onChange={handleChangeSlider}/>
       </div>
     </div>
   );
