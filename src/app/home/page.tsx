@@ -3,7 +3,7 @@ import ToggleStats from "./components/ToggleStats";
 
 export default function Home() {
   return (
-    <div className="mb-12">
+    <div className="w-full relative">
       <ToggleStats />
       <Bars />
     </div>
