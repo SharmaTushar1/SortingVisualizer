@@ -9,6 +9,6 @@ type stats = {
   setIsStable: Dispatch<SetStateAction<boolean | undefined>>,
   memoryUsage: string,
   setMemoryUsage: Dispatch<SetStateAction<string>>,
-  arraySize: number,
-  setArraySize: (newArraySize: number) => any,
+  array: number[],
+  setArray: (newArray: number[]) => any,
 }

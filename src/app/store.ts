@@ -11,8 +11,8 @@ interface SliderState {
   setIsStable: (newValue: boolean | undefined) => void;
   memoryUsage: string;
   setMemoryUsage: (newValue: string) => void;
-  arraySize: number;
-  setArraySize: (newArraySize: number) => void;
+  array: number[];
+  setArray: (newArray: number[]) => void;
 }
 
 export const useStore = create<SliderState>((set: any) => ({ // FIXME: Change this to actual type of the set function instead of any
@@ -26,7 +26,7 @@ export const useStore = create<SliderState>((set: any) => ({ // FIXME: Change th
   setIsStable: (newValue: boolean | undefined) => set({isStable: newValue}),
   memoryUsage: '',
   setMemoryUsage: (newValue: string) => set({memoryUsage: newValue}),
-  arraySize: 10,
-  setArraySize: (newArraySize: number) => set({arraySize: newArraySize}),
+  array: [],
+  setArray: (newArray: number[]) => set({array: newArray}),
   }
 ))
