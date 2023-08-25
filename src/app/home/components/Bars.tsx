@@ -5,6 +5,10 @@ import bubbleSort from '../lib/bubbleSort';
 import { useState, useEffect } from "react";
 import {motion, AnimatePresence} from 'framer-motion';
 
+interface Window {
+  webkitAudioContext: typeof AudioContext
+}
+
 export default function Bars() {
 
   const propsData = useStore((state) => state);
@@ -17,7 +21,9 @@ export default function Bars() {
     if (audioCtx == null) {
       audioCtx = new (
         AudioContext ||
+        //@ts-ignore
         webkitAudioContext ||
+        //@ts-ignore
         window.webkitAudioContext
       )();
     }
