@@ -4,6 +4,7 @@ import { useStore } from "@/app/store"
 import bubbleSort from '../lib/bubbleSort';
 import { useState, useEffect } from "react";
 import {motion, AnimatePresence} from 'framer-motion';
+import insertionSort from "../lib/insertionSort";
 
 interface Window {
   webkitAudioContext: typeof AudioContext
@@ -14,6 +15,11 @@ export default function Bars() {
   const propsData = useStore((state) => state);
 
   const [isSorting, setIsSorting] = useState(false);
+
+  const sortingAnimationDelay = 5000/propsData.array.length;
+
+  // 10 -> 500ms 1/array.length
+  // 100 -> 50ms
 
   let audioCtx:any = null;
 
@@ -35,6 +41,10 @@ export default function Bars() {
     osc.connect(audioCtx.destination);
   }
 
+  useEffect(() => {
+    console.log(sortingAnimationDelay);
+  }, [propsData.array])
+
   // So basically, just just do the swapping when the value of isSorting is changed.
   //! Also, don't change this code took sm time.
   useEffect(() => {
@@ -46,7 +56,8 @@ export default function Bars() {
     if (propsData.algorithm === 'bubbleSort') {
       swaps = bubbleSort(copyArray).swaps;
     } else if (propsData.algorithm === 'insertionSort') {
-      // swaps = insertionSort(copyArray).swaps;
+      console.log("insertionSort");
+      swaps = insertionSort(copyArray).swaps;
     } else if (propsData.algorithm === 'mergeSort') {
       // swaps = insertionSort(copyArray).swaps;
     }
@@ -80,11 +91,11 @@ export default function Bars() {
           div1.style.backgroundColor = '';
           div2.style.backgroundColor = '';
         }
-      }, 50); // this should be same as the time below TODO: use a variable here ig
+      }, sortingAnimationDelay); // this should be same as the time below TODO: use a variable here ig
       // update the state with the new array
       propsData.setArray(newArray);
       // call the function again after 200ms
-      setTimeout(animateSwaps, 50);
+      setTimeout(animateSwaps, sortingAnimationDelay);
     };
     // call the function for the first time
     animateSwaps();
