@@ -76,7 +76,7 @@ export function Stats({...props}: stats) {
       <div>
         {/* Array Size */}
         Array Size:
-        <input type="range" min="10" max="200" value={props.array.length} onChange={handleChangeSlider}/>
+        <input type="range" min="10" max="100" value={props.array.length} onChange={handleChangeSlider}/>
       </div>
     </div>
   );
