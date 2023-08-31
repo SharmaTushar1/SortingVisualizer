@@ -55,6 +55,7 @@ export function Stats({...props}: stats) {
           <option value={"bubbleSort"}>Bubble Sort</option>
           <option value={"insertionSort"}>Insertion Sort</option>
           <option value={"selectionSort"}>Selection Sort</option>
+          <option value={"mergeSort"}>Merge Sort</option>
         </select>
       </div>
       <div>
