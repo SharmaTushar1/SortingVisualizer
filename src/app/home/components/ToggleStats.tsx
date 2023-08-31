@@ -70,7 +70,6 @@ export function Stats({...props}: stats) {
         Stable: {props.timeTaken}
       </div>
       <div>
-      
         {/* Memory Usage */}
         Memory Usage: {props.memoryUsage}
       </div>
